@@ -8,10 +8,10 @@ import (
 	"net/http"
 )
 
-const templateMetrics string = `Active connections: %d 
-server accepts handled requests
-%d %d %d 
-Reading: %d Writing: %d Waiting: %d 
+const templateMetrics string = `Active connections: %d
+server accepts handled requests request_time
+%d %d %d %d
+Reading: %d Writing: %d Waiting: %d
 `
 
 // NginxClient allows you to fetch NGINX metrics from the stub_status page.
@@ -31,6 +31,7 @@ type StubConnections struct {
 	Active   int64
 	Accepted int64
 	Handled  int64
+	RequestTime int64
 	Reading  int64
 	Writing  int64
 	Waiting  int64
@@ -87,6 +88,7 @@ func parseStubStats(r io.Reader) (*StubStats, error) {
 		&s.Connections.Accepted,
 		&s.Connections.Handled,
 		&s.Requests,
+		&s.Connections.RequestTime,
 		&s.Connections.Reading,
 		&s.Connections.Writing,
 		&s.Connections.Waiting); err != nil {
