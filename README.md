@@ -1,4 +1,4 @@
-# NGINX Prometheus Exporter Tengine
+# NGINX Prometheus Exporter (Tengine)
 fork `https://github.com/nginxinc/nginx-prometheus-exporter`
 
 # Overview
